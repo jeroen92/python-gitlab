@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            pyenv global 3.7.0
+            python3 -m pip install tox
+      - run:
+          name: run py_func_v4
+          command: |
+            python3 -m tox -e py_func_v4
+      - run:
+          name: run cli_func_v4
+          command: |
+            python3 -m tox -e cli_func_v4
